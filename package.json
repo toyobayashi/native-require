@@ -1,0 +1,29 @@
+{
+  "name": "@tybys/native-require",
+  "version": "1.0.0",
+  "description": "Export native require function. It can be ignored by webpack preprocessing and avoid bundling webpack node polyfills.",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "node ./scripts/build.js",
+    "test": "node ./test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toyobayashi/native-require.git"
+  },
+  "author": "toyobayashi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toyobayashi/native-require/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/toyobayashi/native-require#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "rollup": "^2.7.2",
+    "rollup-plugin-terser": "^5.3.0",
+    "webpack": "^4.43.0"
+  }
+}
