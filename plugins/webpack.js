@@ -30,23 +30,23 @@ class NativeRequireWebpackPlugin {
 				const handler = parser => {
           parser.hooks.expression
             .for("__tybys_get_native_require__")
-            .tap("NativeRequirePlugin", ParserHelpers.toConstantDependency(parser, __tybys_get_native_require__))
+            .tap("NativeRequireWebpackPlugin", ParserHelpers.toConstantDependency(parser, __tybys_get_native_require__))
           parser.hooks.expression
             .for(val)
-            .tap("NativeRequirePlugin", (expr) => {
+            .tap("NativeRequireWebpackPlugin", () => {
               const code = ParserHelpers.requireFileAsExpression(
                 parser.state.module.context,
                 require.resolve("../index-webpack.js")
               );
               return ParserHelpers.addParsedVariableToModule(parser, val, code)
             })
-          
+
           parser.hooks.evaluateTypeof
             .for('__tybys_get_native_require__')
-            .tap("NativeRequirePlugin", ParserHelpers.evaluateToString('function'))
+            .tap("NativeRequireWebpackPlugin", ParserHelpers.evaluateToString('function'))
           parser.hooks.evaluateTypeof
             .for(val)
-            .tap("NativeRequirePlugin", ParserHelpers.evaluateToString('object'))
+            .tap("NativeRequireWebpackPlugin", ParserHelpers.evaluateToString('object'))
 				}
 
 				normalModuleFactory.hooks.parser
