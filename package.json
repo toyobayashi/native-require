@@ -1,6 +1,6 @@
 {
   "name": "@tybys/native-require",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Export native require function. It can be ignored by webpack preprocessing and avoid bundling webpack node polyfills.",
   "main": "index.js",
   "scripts": {
