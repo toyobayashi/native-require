@@ -1,4 +1,13 @@
-/** @type {((id: string) => any) | undefined} */
-exports.nativeRequire = (function () {
-  return typeof __webpack_require__ === 'function' ? (typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined) : (typeof require !== 'undefined' ? require : undefined);
-})();
+var nativeRequire;
+
+if (typeof __webpack_modules__ !== 'undefined') {
+  nativeRequire = typeof __tybys_get_native_require__ === 'function' ? __tybys_get_native_require__() : (function () {
+    return typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined;
+  })();
+} else {
+  nativeRequire = (function () {
+    return typeof __webpack_modules__ !== 'undefined' ? (typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined) : (typeof require !== 'undefined' ? require : undefined);
+  })();
+}
+
+exports.nativeRequire = nativeRequire;

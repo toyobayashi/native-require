@@ -32,7 +32,7 @@ module.exports = {
 CommonJS:
 
 ``` js
-const { nativeRequire } = require('@tybys/native-require/index-webpack.js')
+const { nativeRequire } = require('@tybys/native-require/index.js')
 if (typeof nativeRequire === 'function') {
   // ...
 }
@@ -41,7 +41,7 @@ if (typeof nativeRequire === 'function') {
 ESM format input / TypeScript:
 
 ``` ts
-import { nativeRequire } from '@tybys/native-require/index-webpack'
+import { nativeRequire } from '@tybys/native-require/index'
 if (typeof nativeRequire === 'function') {
   // ...
 }

@@ -1,4 +1,4 @@
-import { nativeRequire } from '../../index-webpack.js'
+import { nativeRequire } from '../../index.js'
 
 console.log(nativeRequire('path').sep)
 

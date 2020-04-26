@@ -6,17 +6,26 @@
 
 	
 
-	/** @type {((id: string) => any) | undefined} */
-	var nativeRequire_1 = (function () {
-	  return typeof __webpack_require__ === 'function' ? (typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined) : (typeof require !== 'undefined' ? require : undefined);
-	})();
+	var nativeRequire;
 
-	var nativeRequire = {
-		nativeRequire: nativeRequire_1
+	if (typeof __webpack_modules__ !== 'undefined') {
+	  nativeRequire = typeof __tybys_get_native_require__ === 'function' ? __tybys_get_native_require__() : (function () {
+	    return typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined;
+	  })();
+	} else {
+	  nativeRequire = (function () {
+	    return typeof __webpack_modules__ !== 'undefined' ? (typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined) : (typeof require !== 'undefined' ? require : undefined);
+	  })();
+	}
+
+	var nativeRequire_2 = nativeRequire;
+
+	var nativeRequire_1 = {
+		nativeRequire: nativeRequire_2
 	};
 
-	exports.default = nativeRequire;
-	exports.nativeRequire = nativeRequire_1;
+	exports.default = nativeRequire_1;
+	exports.nativeRequire = nativeRequire_2;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 

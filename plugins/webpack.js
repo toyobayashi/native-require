@@ -4,8 +4,10 @@ const ConstDependency = require('webpack/lib/dependencies/ConstDependency.js')
 
 const __tybys_get_native_require__ = 
 `(function () {
-  return typeof __webpack_require__ === 'function' ? (typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined) : (typeof require !== 'undefined' ? require : undefined);
+  return typeof __webpack_modules__ !== 'undefined' ? (typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined) : (typeof require !== 'undefined' ? require : undefined);
 })`
+
+const GET_NATIVE_REQUIRE_FUNCTION_NAME = '__tybys_get_native_require__'
 
 class NativeRequireWebpackPlugin {
   constructor (options) {
@@ -29,20 +31,20 @@ class NativeRequireWebpackPlugin {
 
 				const handler = parser => {
           parser.hooks.expression
-            .for("__tybys_get_native_require__")
+            .for(GET_NATIVE_REQUIRE_FUNCTION_NAME)
             .tap("NativeRequireWebpackPlugin", ParserHelpers.toConstantDependency(parser, __tybys_get_native_require__))
           parser.hooks.expression
             .for(val)
             .tap("NativeRequireWebpackPlugin", () => {
               const code = ParserHelpers.requireFileAsExpression(
                 parser.state.module.context,
-                require.resolve("../index-webpack.js")
+                require.resolve("../index.js")
               );
               return ParserHelpers.addParsedVariableToModule(parser, val, code)
             })
 
           parser.hooks.evaluateTypeof
-            .for('__tybys_get_native_require__')
+            .for(GET_NATIVE_REQUIRE_FUNCTION_NAME)
             .tap("NativeRequireWebpackPlugin", ParserHelpers.evaluateToString('function'))
           parser.hooks.evaluateTypeof
             .for(val)
