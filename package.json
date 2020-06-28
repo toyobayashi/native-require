@@ -1,8 +1,10 @@
 {
   "name": "@tybys/native-require",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Export native require function. It can be ignored by webpack preprocessing and avoid bundling webpack node polyfills.",
+  "module": "index.esm.js",
   "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "prepare": "node ./scripts/build.js",
     "test": "node ./test/index.js"
@@ -21,8 +23,9 @@
   },
   "homepage": "https://github.com/toyobayashi/native-require#readme",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^11.1.0",
-    "rollup": "^2.7.2",
+    "@rollup/plugin-commonjs": "^11.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "rollup": "^2.18.1",
     "rollup-plugin-terser": "^5.3.0",
     "webpack": "^4.43.0"
   }

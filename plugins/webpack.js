@@ -38,7 +38,7 @@ class NativeRequireWebpackPlugin {
             .tap("NativeRequireWebpackPlugin", () => {
               const code = ParserHelpers.requireFileAsExpression(
                 parser.state.module.context,
-                require.resolve("../index.js")
+                require.resolve("..")
               );
               return ParserHelpers.addParsedVariableToModule(parser, val, code)
             })

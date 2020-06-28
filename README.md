@@ -14,7 +14,7 @@ If you want to write a library which supports both Node.js and browser, and you 
 
 ### Webpack
 
-Webpack config:
+Plugin is **not** neccesary.
 
 ``` js
 const { NativeRequireWebpackPlugin } = require('@tybys/native-require/plugins/webpack.js')
@@ -58,7 +58,7 @@ if (typeof nativeRequire === 'function') {
 
 ### Rollup
 
-Rollup config:
+**NOTE**: If you are using commonjs `require('@tybys/native-require')` with `@rollup/plugin-commonjs` and it's major version is less than `12`, you need add `@tybys/native-require/plugins/rollup.js`.
 
 ``` js
 const { nativeRequireRollupPlugin } = require('@tybys/native-require/plugins/rollup.js')
@@ -71,7 +71,11 @@ module.exports = {
 }
 ```
 
-JavaScript / TypeScript:
+``` js
+const { nativeRequire } = require('@tybys/native-require')
+```
+
+ESM / TypeScript:
 
 ``` js
 import { nativeRequire } from '@tybys/native-require'

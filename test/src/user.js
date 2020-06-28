@@ -1,1 +1,1 @@
-console.log(require('../../index.js').nativeRequire('path').sep)
+console.log(require('../..').nativeRequire('path').sep)

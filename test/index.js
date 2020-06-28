@@ -99,10 +99,7 @@ const webpackUser = new Promise((resolve, reject) => {
 const rollupPromise = rollup.rollup({
   input: path.join(__dirname, '/src/rollup.js'),
   plugins: [
-    require('../plugins/rollup.js').nativeRequireRollupPlugin(),
-    require('@rollup/plugin-commonjs')({
-      extensions: ['.js']
-    })
+    require('@rollup/plugin-node-resolve').default()
   ]
 }).then(bundle => bundle.write({
   file: path.join(__dirname, 'dist/rollup.js'),
@@ -116,7 +113,28 @@ const rollupPromise = rollup.rollup({
   }
 })
 
-Promise.all([webpackPromise, webpackUser, rollupPromise]).then(() => {
+const rollupPromise2 = rollup.rollup({
+  input: path.join(__dirname, '/src/rollup2.js'),
+  plugins: [
+    require('../plugins/rollup.js').nativeRequireRollupPlugin(),
+    require('@rollup/plugin-commonjs')({
+      extensions: ['.js'],
+    }),
+    require('@rollup/plugin-node-resolve').default()
+  ]
+}).then(bundle => bundle.write({
+  file: path.join(__dirname, 'dist/rollup2.js'),
+  format: 'umd',
+  name: 'nruser',
+  exports: 'named'
+})).then(() => {
+  const codeRollup = fs.readFileSync(path.join(outputPath, 'rollup2.js'), 'utf8')
+  if (codeRollup.match(/typeof require/) === null) {
+    throw new Error('require is replaced by commonjsRequire')
+  }
+})
+
+Promise.all([webpackPromise, webpackUser, rollupPromise, rollupPromise2]).then(() => {
   console.log('Test passed')
   process.exit(0)
 }).catch(err => {
