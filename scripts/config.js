@@ -1,5 +1,5 @@
 module.exports = {
-  entry: 'index.js',
+  entry: 'index.esm.js',
   output: 'dist',
   outputName: 'native-require',
   library: 'nr',

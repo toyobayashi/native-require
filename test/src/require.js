@@ -1,4 +1,4 @@
-const nr = require('../..')
+const nr = require('../../index.js')
 
 console.log(nr.nativeRequire('path').sep)
 

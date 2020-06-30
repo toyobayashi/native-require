@@ -1,8 +1,5 @@
-export declare interface RequireFunction {
-  (id: string): any;
-  [key: string]: any;
-}
+/// <reference types="node" />
 
-export declare const nativeRequire: RequireFunction | undefined
+export declare const nativeRequire: NodeJS.Require | undefined
 
 export as namespace nr

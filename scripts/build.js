@@ -2,9 +2,9 @@ const { rollup } = require('rollup')
 const config = require('./config')
 
 const { terser } = require('rollup-plugin-terser')
-const rollupCommonJS = require('@rollup/plugin-commonjs')
+// const rollupCommonJS = require('@rollup/plugin-commonjs')
 
-const { nativeRequireRollupPlugin } = require('../plugins/rollup')
+// const { nativeRequireRollupPlugin } = require('../plugins/rollup')
 
 const p = function (...args) {
   return require('path').join(__dirname, '..', ...args)
@@ -17,10 +17,10 @@ function getRollupConfig (minify) {
     input: {
       input: p(config.entry),
       plugins: [
-        nativeRequireRollupPlugin(),
-        rollupCommonJS({
-          extensions: ['.js']
-        }),
+        // nativeRequireRollupPlugin(),
+        // rollupCommonJS({
+        //   extensions: ['.js']
+        // }),
         ...(minify ? [terser({
           ...(config.terserOptions || {}),
           module: (config.terserOptions && config.terserOptions.module) || (['es', 'esm', 'module']).includes(format)

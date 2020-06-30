@@ -32,7 +32,7 @@ module.exports = {
 CommonJS:
 
 ``` js
-const { nativeRequire } = require('@tybys/native-require/index.js')
+const { nativeRequire } = require('@tybys/native-require/index.js') // index.js can not be omitted
 if (typeof nativeRequire === 'function') {
   // ...
 }
@@ -41,7 +41,7 @@ if (typeof nativeRequire === 'function') {
 ESM format input / TypeScript:
 
 ``` ts
-import { nativeRequire } from '@tybys/native-require/index'
+import { nativeRequire } from '@tybys/native-require'
 if (typeof nativeRequire === 'function') {
   // ...
 }
@@ -58,7 +58,7 @@ if (typeof nativeRequire === 'function') {
 
 ### Rollup
 
-**NOTE**: If you are using commonjs `require('@tybys/native-require')` with `@rollup/plugin-commonjs` and it's major version is less than `12`, you need add `@tybys/native-require/plugins/rollup.js`.
+**NOTE**: If you are using commonjs `require('@tybys/native-require/index.js')` with `@rollup/plugin-commonjs` and it's major version is less than `12`, you need add `@tybys/native-require/plugins/rollup.js`.
 
 ``` js
 const { nativeRequireRollupPlugin } = require('@tybys/native-require/plugins/rollup.js')
@@ -72,7 +72,7 @@ module.exports = {
 ```
 
 ``` js
-const { nativeRequire } = require('@tybys/native-require')
+const { nativeRequire } = require('@tybys/native-require/index.js') // index.js can not be omitted
 ```
 
 ESM / TypeScript:

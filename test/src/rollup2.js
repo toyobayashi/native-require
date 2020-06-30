@@ -1,4 +1,4 @@
-const { nativeRequire } = require('../..')
+const { nativeRequire } = require('../../index.js')
 
 console.log(nativeRequire('path').sep)
 
