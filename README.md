@@ -58,7 +58,7 @@ if (typeof nativeRequire === 'function') {
 
 ### Rollup
 
-**NOTE**: If you are using commonjs `require('@tybys/native-require/index.js')` with `@rollup/plugin-commonjs` and it's major version is less than `12`, you need add `@tybys/native-require/plugins/rollup.js`.
+**NOTE**: If you are using commonjs `require('@tybys/native-require/index.js')` with `@rollup/plugin-commonjs`, you need to add `@tybys/native-require/plugins/rollup.js`.
 
 ``` js
 const { nativeRequireRollupPlugin } = require('@tybys/native-require/plugins/rollup.js')
