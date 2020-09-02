@@ -1,5 +1,5 @@
 const nr = require('../../index.js')
 
-console.log(nr.nativeRequire('path').sep)
+console.log(nr.tryGetRequireFunction()('path').sep)
 
 module.exports = nr

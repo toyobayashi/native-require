@@ -52,11 +52,11 @@ const webpackPromise = new Promise((resolve, reject) => {
     try {
       const srcRequire = require('./src/require.js')
       const distRequire = require('./dist/require.js')
-      assert.notStrictEqual(srcRequire.nativeRequire, undefined, 'srcRequire.nativeRequire === undefined')
-      assert.notStrictEqual(distRequire.nativeRequire, undefined, 'distRequire.nativeRequire === undefined')
-      assert.notStrictEqual(srcRequire.nativeRequire.main, undefined, 'srcRequire.nativeRequire.main === undefined')
-      assert.notStrictEqual(distRequire.nativeRequire.main, undefined, 'distRequire.nativeRequire.main === undefined')
-      assert.deepEqual(srcRequire.nativeRequire.main, distRequire.nativeRequire.main, 'srcRequire.nativeRequire.main !== distRequire.nativeRequire.main')
+      assert.notStrictEqual(srcRequire.tryGetRequireFunction(), undefined, 'srcRequire.tryGetRequireFunction() === undefined')
+      assert.notStrictEqual(distRequire.tryGetRequireFunction(), undefined, 'distRequire.tryGetRequireFunction() === undefined')
+      assert.notStrictEqual(srcRequire.tryGetRequireFunction().main, undefined, 'srcRequire.tryGetRequireFunction().main === undefined')
+      assert.notStrictEqual(distRequire.tryGetRequireFunction().main, undefined, 'distRequire.tryGetRequireFunction().main === undefined')
+      assert.deepEqual(srcRequire.tryGetRequireFunction().main, distRequire.tryGetRequireFunction().main, 'srcRequire.tryGetRequireFunction().main !== distRequire.tryGetRequireFunction().main')
     } catch (err) {
       reject(err)
       return
@@ -134,7 +134,17 @@ const rollupPromise2 = rollup.rollup({
   }
 })
 
-Promise.all([webpackPromise, webpackUser, rollupPromise, rollupPromise2]).then(() => {
+const moduleChildren = new Promise((resolve, reject) => {
+  try {
+    const childrenLength = require('./node.js')()
+    assert.strictEqual(childrenLength, 2, 'childrenLength !== 2')
+    resolve()
+  } catch (err) {
+    reject(err)
+  }
+})
+
+Promise.all([moduleChildren, webpackPromise, webpackUser, rollupPromise, rollupPromise2]).then(() => {
   console.log('Test passed')
   process.exit(0)
 }).catch(err => {

@@ -1,10 +1,10 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = global || self, factory(global.nr = {}));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.nr = {}));
 }(this, (function (exports) { 'use strict';
 
-  var nativeRequire = (function getRequireFunction (parentModule) {
+  function tryGetRequireFunction (parentModule) {
     var nativeRequire;
 
     if (typeof __webpack_modules__ !== 'undefined') {
@@ -55,14 +55,6 @@
         return nativeRequire;
       }
 
-      if (typeof Module.createRequire === 'function') {
-        return Module.createRequire(parentModule.filename);
-      }
-
-      if (typeof Module.createRequireFromPath === 'function') {
-        return Module.createRequireFromPath(parentModule.filename);
-      }
-
       return (function makeRequireFunction (mod, main) {
         var Module = mod.constructor;
         function require (path) {
@@ -95,9 +87,9 @@
     }
 
     return nativeRequire;
-  })();
+  }
 
-  exports.nativeRequire = nativeRequire;
+  exports.tryGetRequireFunction = tryGetRequireFunction;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

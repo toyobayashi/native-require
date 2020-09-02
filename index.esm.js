@@ -1,4 +1,4 @@
-export var nativeRequire = (function getRequireFunction (parentModule) {
+export function tryGetRequireFunction (parentModule) {
   var nativeRequire;
 
   if (typeof __webpack_modules__ !== 'undefined') {
@@ -49,14 +49,6 @@ export var nativeRequire = (function getRequireFunction (parentModule) {
       return nativeRequire;
     }
 
-    if (typeof Module.createRequire === 'function') {
-      return Module.createRequire(parentModule.filename);
-    }
-
-    if (typeof Module.createRequireFromPath === 'function') {
-      return Module.createRequireFromPath(parentModule.filename);
-    }
-
     return (function makeRequireFunction (mod, main) {
       var Module = mod.constructor;
       function require (path) {
@@ -90,4 +82,4 @@ export var nativeRequire = (function getRequireFunction (parentModule) {
   }
 
   return nativeRequire;
-})();
+}

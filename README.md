@@ -1,6 +1,6 @@
 # native-require
 
-Export native require function. It can be ignored by webpack preprocessing and avoid bundling webpack Node.js polyfills.
+Try to get native require function in any environment.
 
 ``` bash
 $ npm install @tybys/native-require
@@ -32,7 +32,8 @@ module.exports = {
 CommonJS:
 
 ``` js
-const { nativeRequire } = require('@tybys/native-require/index.js') // index.js can not be omitted
+const { tryGetRequireFunction } = require('@tybys/native-require/index.js') // index.js can not be omitted
+const nativeRequire = tryGetRequireFunction()
 if (typeof nativeRequire === 'function') {
   // ...
 }
@@ -41,7 +42,8 @@ if (typeof nativeRequire === 'function') {
 ESM format input / TypeScript:
 
 ``` ts
-import { nativeRequire } from '@tybys/native-require'
+import { tryGetRequireFunction } from '@tybys/native-require'
+const nativeRequire = tryGetRequireFunction()
 if (typeof nativeRequire === 'function') {
   // ...
 }
@@ -50,7 +52,8 @@ if (typeof nativeRequire === 'function') {
 or use injected variable specified in plugin option.
 
 ``` js
-const { nativeRequire } = __tybys_native_require__
+const { tryGetRequireFunction } = __tybys_native_require__
+const nativeRequire = tryGetRequireFunction()
 if (typeof nativeRequire === 'function') {
   // ...
 }
@@ -72,13 +75,14 @@ module.exports = {
 ```
 
 ``` js
-const { nativeRequire } = require('@tybys/native-require/index.js') // index.js can not be omitted
+const { tryGetRequireFunction } = require('@tybys/native-require/index.js') // index.js can not be omitted
 ```
 
 ESM / TypeScript:
 
 ``` js
-import { nativeRequire } from '@tybys/native-require'
+import { tryGetRequireFunction } from '@tybys/native-require'
+const nativeRequire = tryGetRequireFunction()
 if (typeof nativeRequire === 'function') {
   // ...
 }
@@ -90,7 +94,7 @@ if (typeof nativeRequire === 'function') {
 <script src="node_modules/@tybys/native-require/dist/native-require.js"></script>
 <script>
   (function () {
-    var nativeRequire = nr.nativeRequire;
+    var nativeRequire = nr.tryGetRequireFunction(typeof module !== 'undefined' ? module : undefined)();
     if (typeof nativeRequire === 'function') {
       // ...
     }

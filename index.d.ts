@@ -1,3 +1,3 @@
 /// <reference types="node" />
 
-export declare const nativeRequire: NodeJS.Require | undefined
+export function tryGetRequireFunction(parentModule?: Module): NodeJS.Require | undefined

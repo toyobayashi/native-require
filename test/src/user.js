@@ -1,1 +1,1 @@
-console.log(require('../..').nativeRequire('path').sep)
+console.log(require('../..').tryGetRequireFunction(module)('path').sep)
