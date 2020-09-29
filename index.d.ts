@@ -1,3 +1,3 @@
 /// <reference types="node" />
 
-export function tryGetRequireFunction(parentModule?: Module): NodeJS.Require | undefined
+export function tryGetRequireFunction(parentModule?: NodeJS.Module): NodeRequire | undefined
