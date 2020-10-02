@@ -1,4 +1,9 @@
-const ParserHelpers = require('webpack/lib/ParserHelpers.js')
+let ParserHelpers
+try {
+  ParserHelpers = require('webpack/lib/ParserHelpers.js')
+} catch (_) {
+  ParserHelpers = require('webpack/lib/javascript/JavascriptParserHelpers.js')
+}
 const NullFactory = require("webpack/lib/NullFactory.js")
 const ConstDependency = require('webpack/lib/dependencies/ConstDependency.js')
 
