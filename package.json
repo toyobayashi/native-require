@@ -1,6 +1,6 @@
 {
   "name": "@tybys/native-require",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Try to get native require function in any environment.",
   "module": "index.esm.js",
   "main": "index.js",
