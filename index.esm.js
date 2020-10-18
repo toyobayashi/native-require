@@ -1,13 +1,13 @@
 export function tryGetRequireFunction (parentModule) {
   var nativeRequire;
 
-  if (typeof __webpack_modules__ !== 'undefined') {
+  if (typeof __webpack_public_path__ !== 'undefined') {
     nativeRequire = typeof __tybys_get_native_require__ === 'function' ? __tybys_get_native_require__() : (function () {
       return typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined;
     })();
   } else {
     nativeRequire = (function () {
-      return typeof __webpack_modules__ !== 'undefined' ? (typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined) : (typeof require !== 'undefined' ? require : undefined);
+      return typeof __webpack_public_path__ !== 'undefined' ? (typeof __non_webpack_require__ !== 'undefined' ? __non_webpack_require__ : undefined) : (typeof require !== 'undefined' ? require : undefined);
     })();
   }
 
@@ -20,7 +20,7 @@ export function tryGetRequireFunction (parentModule) {
         g = g || new Function("return this")(); // allow eval
       } catch (_) {
         if (typeof globalThis !== "undefined") return globalThis;
-        if (typeof __webpack_modules__ === "undefined") {
+        if (typeof __webpack_public_path__ === "undefined") {
           if (typeof global !== "undefined") return global;
         }
         if (typeof window !== "undefined") return window;

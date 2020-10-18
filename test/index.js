@@ -9,11 +9,10 @@ const outputPath = path.join(__dirname, 'dist')
 
 const webpackPromise = new Promise((resolve, reject) => {
   webpack({
-    mode: 'development',
+    mode: 'none',
     entry: {
       require: [path.join(__dirname, '/src/require.js')],
-      import: [path.join(__dirname, '/src/import.js')],
-      variable: [path.join(__dirname, '/src/variable.js')]
+      import: [path.join(__dirname, '/src/import.js')]
     },
     output: {
       path: outputPath,
@@ -25,7 +24,7 @@ const webpackPromise = new Promise((resolve, reject) => {
     plugins: [
       new NativeRequireWebpackPlugin()
     ],
-    devtool: 'none'
+    // devtool: 'none'
   }, (err, stats) => {
     if (err) {
       reject(err)
@@ -40,11 +39,6 @@ const webpackPromise = new Promise((resolve, reject) => {
     }
     const codeImport = fs.readFileSync(path.join(outputPath, 'import.js'), 'utf8')
     if (codeImport.match(/path-browserify/) !== null || codeImport.match(/typeof __non_webpack_require__/) === null) {
-      reject(new Error('Output error.'))
-      return
-    }
-    const codeVariable = fs.readFileSync(path.join(outputPath, 'variable.js'), 'utf8')
-    if (codeVariable.match(/path-browserify/) !== null || codeVariable.match(/typeof __non_webpack_require__/) === null) {
       reject(new Error('Output error.'))
       return
     }
@@ -68,7 +62,7 @@ const webpackPromise = new Promise((resolve, reject) => {
 
 const webpackUser = new Promise((resolve, reject) => {
   webpack({
-    mode: 'development',
+    mode: 'none',
     entry: {
       user: [path.join(__dirname, '/src/user.js')]
     },
@@ -79,7 +73,7 @@ const webpackUser = new Promise((resolve, reject) => {
       libraryTarget: 'umd',
       globalObject: 'typeof globalThis !== "undefined" ? globalThis : (typeof window !== "undefined" ? window : (typeof self !== "undefined" ? self : this))'
     },
-    devtool: 'none'
+    // devtool: 'none'
   }, (err, stats) => {
     if (err) {
       reject(err)

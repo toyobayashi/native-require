@@ -22,9 +22,7 @@ const { NativeRequireWebpackPlugin } = require('@tybys/native-require/plugins/we
 module.exports = {
   /* ... */
   plugins: [
-    new NativeRequireWebpackPlugin({
-      variable: '__tybys_native_require__' // this is default value
-    })
+    new NativeRequireWebpackPlugin()
   ]
 }
 ```
@@ -43,16 +41,6 @@ ESM format input / TypeScript:
 
 ``` ts
 import { tryGetRequireFunction } from '@tybys/native-require'
-const nativeRequire = tryGetRequireFunction()
-if (typeof nativeRequire === 'function') {
-  // ...
-}
-```
-
-or use injected variable specified in plugin option.
-
-``` js
-const { tryGetRequireFunction } = __tybys_native_require__
 const nativeRequire = tryGetRequireFunction()
 if (typeof nativeRequire === 'function') {
   // ...
