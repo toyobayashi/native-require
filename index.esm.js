@@ -44,7 +44,7 @@ export function tryGetRequireFunction (parentModule) {
       return nativeRequire;
     }
 
-    Module = Module || Module.Module;
+    Module = typeof Module === 'function' ? Module : ((typeof Module === 'object' && Module !== null) ? Module.Module : null);
     if (!Module || !(parentModule instanceof Module)) {
       return nativeRequire;
     }
