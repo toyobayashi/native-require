@@ -1,6 +1,6 @@
 {
   "name": "@tybys/native-require",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Try to get native require function in any environment.",
   "module": "index.esm.js",
   "main": "index.js",
@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/toyobayashi/native-require#readme",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^15.0.0",
-    "@rollup/plugin-node-resolve": "^9.0.0",
-    "rollup": "^2.26.9",
-    "rollup-plugin-terser": "^7.0.1",
-    "webpack": "^5.11.1"
+    "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "rollup": "^2.47.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "webpack": "^5.36.2"
   }
 }

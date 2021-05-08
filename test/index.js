@@ -123,6 +123,9 @@ const rollupPromise2 = rollup.rollup({
   exports: 'named'
 })).then(() => {
   const codeRollup = fs.readFileSync(path.join(outputPath, 'rollup2.js'), 'utf8')
+  if (codeRollup.match(/throw new Error\('Could not dynamically require/) !== null) {
+    throw new Error('require is replaced by commonjsRequire')
+  }
   if (codeRollup.match(/typeof require/) === null) {
     throw new Error('require is replaced by commonjsRequire')
   }
